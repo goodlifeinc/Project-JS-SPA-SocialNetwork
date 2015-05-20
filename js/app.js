@@ -1,15 +1,17 @@
-var app = angular.module('SocialNetwork', ['ngRoute'])
-    .config(function($routeProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
+var app = angular.module('SocialNetwork', ['ngRoute']);
 
-        $routeProvider
-            .when('/news', {
-                templateUrl: 'templates/news.html',
-                controller: 'NewsController'
-            })
-            .when('/', {
-                templateUrl: 'partials/home.html',
-                controller: 'FirstController'
-            })
-        $routeProvider.otherwise({ redirectTo: '/' });
-    });
+app.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
+
+app.config(function($routeProvider) {
+
+    $routeProvider
+        .when('/123', {
+            templateUrl: 'partials/home.html',
+            controller: 'FirstController'
+        })
+        .when('/register', {
+            templateUrl: 'partials/authentication/register.html',
+            controller: 'AuthenticationController'
+        });
+    $routeProvider.otherwise({ redirectTo: '/' });
+});
