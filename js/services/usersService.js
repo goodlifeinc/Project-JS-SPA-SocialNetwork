@@ -93,9 +93,5 @@ app.factory('usersService', function ($http, baseServiceUrl, requester) {
         return localStorage['accessToken'];
     };
 
-    service.searchUsersByName = function(searchTerm) {
-        return requester('get', serviceUrl)
-    }
-
     return service;
 });
