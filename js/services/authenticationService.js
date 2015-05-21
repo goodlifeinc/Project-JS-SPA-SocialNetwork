@@ -5,10 +5,15 @@ app.factory('authentication', function ($http, baseServiceUrl, requester) {
 
     var serviceUrl = baseServiceUrl + '/users';
 
+    // Tested & Working
     service.Login = function (loginData, success, error) {
-        return requester('POST', baseServiceUrl + 'Login', loginData);
+        $http.post(serviceUrl + '/Login', loginData)
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
     };
 
+    // Tested & Working
     service.Register = function (registerData, success, error) {
         $http.post(serviceUrl + '/Register', registerData)
             .success(function (data, status, headers, config) {
@@ -37,18 +42,14 @@ app.factory('authentication', function ($http, baseServiceUrl, requester) {
             }).error(error);
     };
 
+    // Tested & Working
     service.SetCredentials = function (serverData) {
         localStorage['accessToken'] = serverData.access_token;
-        localStorage['username'] = serverData.username;
-        localStorage['isAdmin'] = serverData.isAdmin ? serverData.isAdmin : false;
+        localStorage['userName'] = serverData.userName;
     };
 
     service.GetUsername = function () {
-        return localStorage['username'];
-    };
-
-    service.GetIsAdmin = function () {
-        return localStorage['isAdmin'];
+        return localStorage['userName'];
     };
 
     service.ClearCredentials = function () {
