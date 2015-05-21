@@ -1,28 +1,22 @@
-app.controller('UserController', function($scope, $location, $route, authentication, userService) {
-    if (!authentication.isLoggedIn()) {
-        $location.path('/login');
+app.controller('UsersController', function($scope, $location, usersService) {
+    if(usersService.isLoggedIn()) {
+        $location.path('/user/home');
     }
 
-    var getUserData = function() {
-        userService.GetUserData(
-            function(serverdata){
-                $scope.userData = serverdata;
-                console.log(serverdata);
-            },
-            function(serverError) {
-                console.log(serverError)
-            });
+    var ClearData = function () {
+        $scope.loginData = "";
+        $scope.registerData = "";
+        $scope.userData = "";
+        $scope.passwordData = "";
     };
-
-    getUserData();
 
     // Tested and working
     $scope.register = function () {
-        authentication.Register($scope.registerData,
+        usersService.Register($scope.registerData,
             function (serverData) {
                 //notifyService.showInfo("Successful Register!");
                 console.log("Successfully registered!");
-                authentication.SetCredentials(serverData);
+                usersService.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');
             },
@@ -34,11 +28,11 @@ app.controller('UserController', function($scope, $location, $route, authenticat
 
     // Tested and working
     $scope.login = function () {
-        authentication.Login($scope.loginData,
+        usersService.Login($scope.loginData,
             function (serverData) {
                 //notifyService.showInfo("Successful Register!");
                 console.log("Successfully login!");
-                authentication.SetCredentials(serverData);
+                usersService.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');
             },
@@ -47,13 +41,4 @@ app.controller('UserController', function($scope, $location, $route, authenticat
                 console.log(serverError)
             });
     };
-
-    $scope.logout = function () {
-        //notifyService.showInfo("Successful Logout!");
-        //ClearData();
-        authentication.ClearCredentials();
-        //mainData.clearParams();
-        $location.path('/');
-    };
-
 });
