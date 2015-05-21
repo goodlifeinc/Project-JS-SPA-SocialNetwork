@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
         .when('/login', {
             templateUrl: 'partials/authentication/login.html',
             controller: 'AuthenticationController'
+        })
+        .when('/user/home', {
+            templateUrl: 'partials/userHomePage.html'
+
         });
 
     $routeProvider.otherwise({ redirectTo: '/' });

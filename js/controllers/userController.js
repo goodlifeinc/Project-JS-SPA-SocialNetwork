@@ -1,14 +1,20 @@
-app.controller('AuthenticationController', function($scope, $location, authentication) {
-    if(authentication.isLoggedIn()) {
-        $location.path('/user/home');
+app.controller('UserController', function($scope, $location, $route, authentication, userService) {
+    if (!authentication.isLoggedIn()) {
+        $location.path('/login');
     }
 
-    var ClearData = function () {
-        $scope.loginData = "";
-        $scope.registerData = "";
-        $scope.userData = "";
-        $scope.passwordData = "";
+    var getUserData = function() {
+        userService.GetUserData(
+            function(serverdata){
+                $scope.userData = serverdata;
+                console.log(serverdata);
+            },
+            function(serverError) {
+                console.log(serverError)
+            });
     };
+
+    getUserData();
 
     // Tested and working
     $scope.register = function () {
@@ -44,10 +50,10 @@ app.controller('AuthenticationController', function($scope, $location, authentic
 
     $scope.logout = function () {
         //notifyService.showInfo("Successful Logout!");
-        ClearData();
+        //ClearData();
         authentication.ClearCredentials();
         //mainData.clearParams();
-        $route.reload();
+        $location.path('/');
     };
 
 });

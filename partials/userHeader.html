@@ -1,0 +1,10 @@
+<div class="profilePic">
+    <img ng-src="{{userData.profileImageData}}" alt="profile pic" />
+</div>
+<div class="name">
+    {{userData.name}}
+</div>
+<div friend-requests></div>
+<a class="btn btn-default" href="#/user/edit">Edit profile</a>
+<a class="btn btn-default" href="#/user/changepass">Change password</a>
+<button class="btn btn-default" ng-click="logout()">Logout</button>

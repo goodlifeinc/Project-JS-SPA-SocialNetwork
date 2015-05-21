@@ -1,28 +1,12 @@
 'use strict';
 
-app.factory('authentication', function ($http, baseServiceUrl, requester) {
+app.factory('userService', function ($http, baseServiceUrl, requester) {
     var service = {};
 
-    var serviceUrl = baseServiceUrl + '/users';
-
-    // Tested & Working
-    service.Login = function (loginData, success, error) {
-        $http.post(serviceUrl + '/Login', loginData)
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
-
-    // Tested & Working
-    service.Register = function (registerData, success, error) {
-        $http.post(serviceUrl + '/Register', registerData)
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
+    var serviceUrl = baseServiceUrl + '/me';
 
     service.GetUserData = function (success, error) {
-        $http.get(serviceUrl + '/me', {headers: this.GetHeaders()})
+        $http.get(serviceUrl , {headers: this.GetHeaders()})
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
