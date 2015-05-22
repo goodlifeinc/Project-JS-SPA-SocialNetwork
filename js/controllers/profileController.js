@@ -1,23 +1,32 @@
 app.controller('ProfileController', function($scope, $location, $route, profileService, usersService) {
 
+    $scope.username = usersService.GetUsername();
+    $scope.profileImage = localStorage['profileImage'];
+    $scope.isLogged = usersService.isLoggedIn();
+
     if (!usersService.isLoggedIn()) {
         $location.path('/login');
     }
 
+    //currently unused
     var getUserData = function() {
-        profileService.GetUserData(
-            function(serverdata) {
-                $scope.userData = serverdata;
+        profileService.GetUserData(function(serverdata) {
+                $scope.name = serverdata.name;
+                localStorage['name'] = serverdata.name;
             },
             function(err){
                 usersService.ClearCredentials();
                 $location.path('/');
                 console.log(err);
-            }
-        )
+            })
     };
 
-    getUserData();
+    if(!$scope.name){
+        if(!localStorage['name']) {
+            getUserData();
+        }
+        $scope.name = localStorage['name'];
+    }
 
     $scope.logout = function () {
         usersService.ClearCredentials();
@@ -48,7 +57,9 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
             }
         },
         function(error) {
-            error(error);
+            usersService.ClearCredentials();
+            $location.path('/');
+            console.log(error);
         })
     };
 
@@ -60,7 +71,9 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
                 }
             },
             function(error) {
-                error(error);
+                usersService.ClearCredentials();
+                $location.path('/');
+                console.log(error);
             }
         )
     };
@@ -73,7 +86,9 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
                 }
             },
             function(error) {
-                error(error);
+                usersService.ClearCredentials();
+                $location.path('/');
+                console.log(error);
             })
     };
 

@@ -1,11 +1,11 @@
 <div class="profilePic">
-    <img ng-src="{{userData.profileImageData}}" alt="profile pic" />
+    <img ng-src="{{profileImageData}}" alt="profile pic" />
 </div>
-<div class="name">
-    {{userData.name}}
+<div class="name" ng-if="name">
+    {{name}}
 </div>
-<div ng-init="loadFriendRequests()">
-    <div ng-if="FriendRequestsData">ima nekoi tuk
+<div class="friendRequests" ng-init="loadFriendRequests()"><span class="btn btn-default">Friends</span>
+    <div ng-if="FriendRequestsData">
         <div ng-repeat="request in FriendRequestsData">
             From: {{request.user.name}}
             <button ng-click="acceptFriendRequest(request.id)">Accept</button>

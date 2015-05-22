@@ -14,10 +14,11 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     }
 
     service.GetUserData = function (success, error) {
-        $http.get(serviceUrl , {headers: usersService.GetHeaders()})
-            .success(function (data, status, headers, config) {
-                success(data)
-            }).error(error);
+       $http.get(serviceUrl , {headers: usersService.GetHeaders()})
+            .success(
+                function (data, status, headers, config) {
+                    success(data)
+                }).error(error);
     };
 
     service.EditUserProfile = function (editUserData, success, error) {
