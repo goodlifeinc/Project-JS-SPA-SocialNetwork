@@ -37,7 +37,7 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     service.GetOwnFriends = function(success, error) {
         $http.get(serviceUrl + '/friends', {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config){
-                sucess(data)
+                success(data)
             })
             .error(error)
     };

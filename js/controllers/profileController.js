@@ -44,11 +44,23 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
             if (data.length) {
                 $scope.newsFeedData = data;
             }
-            else{console.log('nema')}
         },
         function(error) {
             error(error);
         })
+    }
+
+    $scope.loadOwnFriends = function () {
+        profileService.GetOwnFriends(
+            function(data){
+                if (data.length) {
+                    $scope.ownFriendsData = data;
+                }
+            },
+            function(error) {
+                error(error);
+            }
+        )
     }
 
 
