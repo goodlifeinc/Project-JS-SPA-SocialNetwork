@@ -10,6 +10,8 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
                 $scope.userData = serverdata;
             },
             function(err){
+                usersService.ClearCredentials();
+                $location.path('/');
                 console.log(err);
             }
         )
