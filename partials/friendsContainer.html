@@ -1,5 +1,9 @@
-<div ng-init="loadOwnFriends()">
-    <div ng-if="ownFriendsData">Ima frendove tuka</div>
+<div class="friendsContainer" ng-init="loadOwnFriends()">
+    <div ng-if="ownFriendsData">
+        <div class="singleFriend" ng-repeat="friend in ownFriendsData">
+            {{friend.name}}
+        </div>
+    </div>
 
     <div ng-if="!ownFriendsData">Nema nikoi, bace.</div>
 </div>
