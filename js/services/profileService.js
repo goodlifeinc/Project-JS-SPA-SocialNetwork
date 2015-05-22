@@ -64,7 +64,7 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     };
 
     service.ApproveFriendRequest = function(id, sucess, error) {
-        $http.put(serviceUrl + '/requests/' + id + '?status=approved', {headers: usersService.GetHeaders()})
+        $http.put(serviceUrl + '/requests/' + id + '?status=approved', {}, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config){
                 sucess(data)
             })
@@ -73,7 +73,7 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     };
 
     service.RejectFriendRequest = function(id, sucess, error) {
-        $http.put(serviceUrl + '/requests/' + id + '?status=rejected', {headers: usersService.GetHeaders()})
+        $http.put(serviceUrl + '/requests/' + id + '?status=rejected', {}, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config){
                 sucess(data)
             })

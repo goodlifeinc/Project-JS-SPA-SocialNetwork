@@ -48,7 +48,7 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
         function(error) {
             error(error);
         })
-    }
+    };
 
     $scope.loadOwnFriends = function () {
         profileService.GetOwnFriends(
@@ -61,6 +61,38 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
                 error(error);
             }
         )
+    };
+
+    $scope.loadFriendRequests = function() {
+        profileService.GetFriendRequests(
+            function(data) {
+                if (data.length) {
+                    $scope.FriendRequestsData = data;
+                }
+            },
+            function(error) {
+                error(error);
+            })
+    };
+
+    $scope.acceptFriendRequest = function(id) {
+        profileService.ApproveFriendRequest(id,
+            function(data){
+                console.log(data);
+            },
+            function(err){
+                console.log(err);
+            })
+    };
+
+    $scope.rejectFriendRequest = function(id) {
+        profileService.RejectFriendRequest(id,
+            function(data){
+                console.log(data);
+            },
+            function(err){
+                console.log(err);
+            })
     }
 
 

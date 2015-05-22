@@ -4,7 +4,15 @@
 <div class="name">
     {{userData.name}}
 </div>
-<div friend-requests></div>
+<div ng-init="loadFriendRequests()">
+    <div ng-if="FriendRequestsData">ima nekoi tuk
+        <div ng-repeat="request in FriendRequestsData">
+            From: {{request.user.name}}
+            <button ng-click="acceptFriendRequest(request.id)">Accept</button>
+            <button ng-click="rejectFriendRequest(request.id)">Reject</button>
+        </div>
+    </div>
+</div>
 <a class="btn btn-default" href="#/user/edit">Edit profile</a>
 <a class="btn btn-default" href="#/user/changepass">Change password</a>
 <button class="btn btn-default" ng-click="logout()">Logout</button>
