@@ -1,6 +1,6 @@
 app.directive('searchUsers', function () {
     return {
-        templateUrl: 'partials/searchUsersForm.html',
+        templateUrl: 'partials/searchUserForm.html',
         controller: 'UsersController',
         scope: {}
     }});

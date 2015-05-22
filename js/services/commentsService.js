@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('usersService', function ($http, baseServiceUrl, usersService) {
+app.factory('commentsService', function ($http, baseServiceUrl, usersService) {
     var service = {};
 
     var serviceUrl = baseServiceUrl + '/posts';
