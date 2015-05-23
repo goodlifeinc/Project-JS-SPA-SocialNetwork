@@ -29,9 +29,9 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     };
 
     service.ChangePassword = function (passwordData, success, error) {
-        $http.put(serviceUrl + '/ChangePassword', passwordData, {headers: this.GetHeaders()})
+        $http.put(serviceUrl + '/ChangePassword', passwordData, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config) {
-                success()
+                success(data)
             }).error(error);
     };
 

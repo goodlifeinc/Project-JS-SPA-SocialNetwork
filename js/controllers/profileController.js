@@ -161,6 +161,18 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
         })
     };
 
+    $scope.changePassword = function(passwordData) {
+        profileService.ChangePassword(passwordData,
+        function(data) {
+            Noty.success('Password successfully changed!', 'topCenter');
+            $location.path('/user/home');
+        },
+        function(error) {
+            console.log(error);
+            Noty.error('Pass not changed <br />' + error.message, 'bottomCenter');
+        })
+    };
+
     $scope.editData = {gender: $scope.gender};
 
     $scope.imageUpload = function(element){
