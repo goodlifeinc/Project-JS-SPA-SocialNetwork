@@ -2,11 +2,20 @@
     <div user-header class="col-md-8 col-sm-12"></div>
     <div search-users class="col-md-4 col-sm-12"></div>
 </header>
-<main class="row">
+<main class="container">
     <header class="col-md-12 col-sm-12" ng-init="loadWallOwnerData()">
-        <h1>{{}}</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-responsive img-thumbnail" ng-src="{{wallOwnerData.profileImageData}}" alt="profileImage" />
+            </div>
+            <div class="col-md-9">
+                <h1>{{wallOwnerData.name}}</h1>
+                <div ng-if="wallOwnerData.isFriend" class="btn btn-primary">Friend</div>
+                <div ng-if="!wallOwnerData.isFriend" class="btn btn-primary">Send friend request</div>
+            </div>
+        </div>
     </header>
-    <section class="col-md-12">
+    <section class="col-md-12" ng-init="loadUserWallData()">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 same ol

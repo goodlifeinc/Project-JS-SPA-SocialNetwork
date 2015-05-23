@@ -4,7 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.wrapper header div {
+.wrapper > header div {
     display: inline-block;
 }
 

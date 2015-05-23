@@ -205,10 +205,22 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
     $scope.loadWallOwnerData = function() {
         usersService.GetUserFullData($routeParams.id,
         function(data){
+            $scope.wallOwnerData = data;
             console.log(data)
         },
         function(err){
             console.log(err);
+        })
+    }
+
+    $scope.loadUserWallData = function() {
+        usersService.GetFriendsWallByPages($routeParams.id, 0, 10,
+        function (data) {
+            console.log('wall')
+            console.log(data);
+        },
+        function (error) {
+            console.log(error);
         })
     }
 });

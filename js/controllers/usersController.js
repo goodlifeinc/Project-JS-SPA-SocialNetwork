@@ -42,4 +42,5 @@ app.controller('UsersController', function($scope, $location, usersService) {
                 console.log(serverError)
             });
     };
+
 });
