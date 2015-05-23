@@ -132,6 +132,9 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
         if($scope.editProfileImage) {
             editData.profileImageData = $scope.editProfileImage;
         }
+        else {
+            editData.profileImageData = $scope.profileImageData;
+        }
         if(!editData.name) {
             editData.name = $scope.name;
         }
@@ -148,6 +151,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
         }
         localStorage['gender'] = editData.gender;
 
+        console.log(editData)
         profileService.EditUserProfile(editData,
         function(data) {
             if($scope.editProfileImage) {
