@@ -15,11 +15,42 @@
             </div>
         </div>
     </header>
-    <section class="col-md-12" ng-init="loadUserWallData()">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                same ol
+    <section class="col-md-8" ng-init="loadUserWallData()">
+        <div ng-if="userWallData">
+            <div class="singlePost" ng-repeat="post in userWallData" data-id="{{post.id}}">
+                <header class="row">
+                    <div class="col-md-12">
+                        <div class="authorPic pull-left">
+                            <img class="img-responsive img-circle" ng-src="{{post.author.profileImageData}}" alt="author.profileImg" />
+                        </div>
+                        <div class="authorName pull-left">
+                            <a href="#/user/{{post.author.username}}" >{{post.author.name}}</a>
+                        </div>
+                        <span class="pull-right">{{post.date | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                    </div>
+                </header>
+                <div class="postContent">
+                    <blockquote>
+                        {{post.postContent}}
+                    </blockquote>
+                </div>
+                <footer class="text-right">
+                <span ng-if="post.likesCount > 0">
+                    {{post.likesCount}}
+                </span>
+                <span ng-if="post.liked">
+                    <button class="btn btn-default">Unlike</button>
+                </span>
+                <span ng-if="!post.liked">
+                    <button class="btn btn-default">Like</button>
+                </span>
+                <span>
+                    <button class="btn btn-default">Comment</button>
+                </span>
+                </footer>
             </div>
         </div>
+
+        <div ng-if="!userWallData">Nema postove, bace.</div>
     </section>
 </main>

@@ -216,7 +216,9 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
     $scope.loadUserWallData = function() {
         usersService.GetFriendsWallByPages($routeParams.id, 0, 10,
         function (data) {
-            console.log('wall')
+            if(data.length) {
+                $scope.userWallData = data;
+            }
             console.log(data);
         },
         function (error) {
