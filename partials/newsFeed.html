@@ -1,5 +1,34 @@
 <div ng-init="loadNewsFeed()">
-    <div ng-if="newsFeedData">Ima nekvi postcheta</div>
+    <div ng-if="newsFeedData">
+        <div class="singlePost" ng-repeat="post in newsFeedData" data-id="{{post.id}}">
+            <header>
+                <div class="authorPic">
+                    <img ng-src="{{post.author.profileImage}}" alt="author.profileImg" />
+                </div>
+                <div>
+                    <span>{{post.author.name}}</span>
+                    <span>{{post.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                </div>
+            </header>
+            <div class="postContent">
+                {{post.postContent}}
+            </div>
+            <footer>
+                <span ng-if="post.likesCount > 0">
+                    {{post.likesCount}}
+                </span>
+                <span ng-if="post.liked">
+                    <button class="btn btn-default">Unlike</button>
+                </span>
+                <span ng-if="!post.liked">
+                    <button class="btn btn-default">Like</button>
+                </span>
+                <span>
+                    <button class="btn btn-default">Comment</button>
+                </span>
+            </footer>
+        </div>
+    </div>
 
     <div ng-if="!newsFeedData">Nema postove, bace.</div>
 </div>

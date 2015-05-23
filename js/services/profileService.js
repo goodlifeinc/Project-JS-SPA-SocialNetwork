@@ -45,7 +45,7 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
 
     service.GetNewsFeed = function(page, numPerPage, sucess, error) {
         var startPos = (page * numPerPage) - numPerPage,
-            query = '/feed?StartPostId=' + startPos + '&PageSize=' + numPerPage;
+            query = '/feed?StartPostId=' + '&PageSize=' + numPerPage;
 
         $http.get(serviceUrl + query, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config){

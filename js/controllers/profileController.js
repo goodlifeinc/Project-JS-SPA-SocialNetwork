@@ -50,8 +50,9 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
     };
 
     $scope.loadNewsFeed = function() {
-        profileService.GetNewsFeed(1, 10,
+        profileService.GetNewsFeed(0, 10,
         function(data) {
+            console.log(data);
             if (data.length) {
                 $scope.newsFeedData = data;
             }
