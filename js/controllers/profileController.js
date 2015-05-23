@@ -162,6 +162,13 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
     };
 
     $scope.changePassword = function(passwordData) {
+        var errMsg = false;
+        if (passwordData.newPassword != passwordData.confirmPassword) {
+            errMsg = 'New password and confirm pass doesnt match!';
+        }
+        if(passwordData.newPassword.length < 6) {
+            errMsg = 'New password must be atleast 6 characters long!';
+        }
         profileService.ChangePassword(passwordData,
         function(data) {
             Noty.success('Password successfully changed!', 'topCenter');
@@ -169,7 +176,10 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
         },
         function(error) {
             console.log(error);
-            Noty.error('Pass not changed <br />' + error.message, 'bottomCenter');
+            if(!errMsg) {
+                errMsg = 'Please re-enter old password!';
+            }
+            Noty.error('Pass not changed <br />' + errMsg, 'bottomCenter');
         })
     };
 
