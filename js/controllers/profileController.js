@@ -146,6 +146,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             localStorage['email'] = editData.email;
             $scope.email = editData.name;
         }
+        localStorage['gender'] = editData.gender;
 
         profileService.EditUserProfile(editData,
         function(data) {
