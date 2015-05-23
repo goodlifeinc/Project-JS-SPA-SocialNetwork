@@ -8,7 +8,27 @@ body {
     display: inline-block;
 }
 
-.profilePic img, .authorPic img {
+.profilePic img {
     height: 65px;
     width: 65px;
+}
+
+.singlePost {
+    padding: 15px;
+    border: 1px solid #adadad;
+    margin-bottom: 15px;
+}
+
+.authorPic img {
+    height: 30px;
+    width: 30px;
+}
+
+.singlePost .authorName {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.singlePost > header {
+    margin-bottom: 15px;
 }

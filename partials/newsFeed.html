@@ -1,19 +1,23 @@
 <div ng-init="loadNewsFeed()">
     <div ng-if="newsFeedData">
         <div class="singlePost" ng-repeat="post in newsFeedData" data-id="{{post.id}}">
-            <header>
-                <div class="authorPic">
-                    <img class="img-responsive img-circle" ng-src="{{post.author.profileImageData}}" alt="author.profileImg" />
-                </div>
-                <div>
-                    <span>{{post.author.name}}</span>
-                    <span>{{post.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+            <header class="row">
+                <div class="col-md-12">
+                    <div class="authorPic pull-left">
+                        <img class="img-responsive img-circle" ng-src="{{post.author.profileImageData}}" alt="author.profileImg" />
+                    </div>
+                    <div class="authorName pull-left">
+                        {{post.author.name}}
+                    </div>
+                    <span class="pull-right">{{post.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
                 </div>
             </header>
             <div class="postContent">
-                {{post.postContent}}
+                <blockquote>
+                    {{post.postContent}}
+                </blockquote>
             </div>
-            <footer>
+            <footer class="text-right">
                 <span ng-if="post.likesCount > 0">
                     {{post.likesCount}}
                 </span>
