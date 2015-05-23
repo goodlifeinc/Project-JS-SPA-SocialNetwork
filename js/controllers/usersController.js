@@ -1,6 +1,4 @@
 app.controller('UsersController', function($scope, $location, usersService) {
-
-    console.log('hello from users controlelr')
     var isLocationPathHome = $location.path() == "/";
     if(usersService.isLoggedIn() && isLocationPathHome) {
         $location.path('/user/home');
@@ -17,8 +15,7 @@ app.controller('UsersController', function($scope, $location, usersService) {
     $scope.register = function () {
         usersService.Register($scope.registerData,
             function (serverData) {
-                //notifyService.showInfo("Successful Register!");
-                console.log("Successfully registered!");
+                Noty.success('Successfully registered!', 'topCenter');
                 usersService.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');
@@ -33,8 +30,7 @@ app.controller('UsersController', function($scope, $location, usersService) {
     $scope.login = function () {
         usersService.Login($scope.loginData,
             function (serverData) {
-                //notifyService.showInfo("Successful Register!");
-                console.log("Successfully login!");
+                Noty.success('Successfully logged in!', 'topCenter');
                 usersService.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');

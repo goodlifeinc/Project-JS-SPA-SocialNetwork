@@ -1,4 +1,4 @@
-app.controller('ProfileController', function($scope, $location, $route, profileService, usersService) {
+app.controller('ProfileController', function($scope, $location, $routeParams, profileService, usersService) {
 
     $scope.username = usersService.GetUsername();
     $scope.profileImage = localStorage['profileImage'];
@@ -35,6 +35,7 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
     }
 
     $scope.logout = function () {
+        Noty.success('Successfully logged out', 'topCenter');
         usersService.ClearCredentials();
         //mainData.clearParams();
         $location.path('/');
@@ -73,6 +74,7 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
         profileService.GetOwnFriends(
             function(data){
                 if (data.length) {
+                    console.log(data);
                     $scope.ownFriendsData = data;
                 }
             },
@@ -124,8 +126,17 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
 
     $scope.editProfile = function(profileData) {
         console.log(profileData);
+    };
+
+    $scope.editData = {gender: $scope.gender};
+
+    $scope.loadWallOwnerData = function() {
+        usersService.GetUserFullData($routeParams.id,
+        function(data){
+            console.log(data)
+        },
+        function(err){
+            console.log(err);
+        })
     }
-
-    $scope.editData = {gender: $scope.gender}
-
 });

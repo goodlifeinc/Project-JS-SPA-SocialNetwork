@@ -44,7 +44,7 @@ app.factory('usersService', function ($http, baseServiceUrl, requester) {
 
     service.GetFriendsWallByPages = function(username, page, numPerPage, sucess, error) {
         var startPos = (page * numPerPage) - numPerPage,
-            query = '/' + username + '/wall?StartPostId=' + startPos + '&PageSize=' + numPerPage;
+            query = '/' + username + '/wall?StartPostId=' + '&PageSize=' + numPerPage;
 
         $http.get(serviceUrl + query, {headers: this.GetHeaders()})
             .success(function (data, status, headers, config){
