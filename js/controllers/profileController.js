@@ -209,6 +209,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             console.log(data)
         },
         function(err){
+            $location.path('/user/home');
             console.log(err);
         })
     }
@@ -222,6 +223,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             console.log(data);
         },
         function (error) {
+            $location.path('/user/home');
             console.log(error);
         })
     }
