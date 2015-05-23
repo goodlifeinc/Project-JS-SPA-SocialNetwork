@@ -22,6 +22,7 @@ app.controller('UsersController', function($scope, $location, usersService) {
             },
             function (serverError) {
                 //notifyService.showError("Unsuccessful Register!", serverError)
+                Noty.error('Unsuccessful register! <br/>' + serverError.message, 'bottomCenter');
                 console.log(serverError)
             });
     };
@@ -37,6 +38,7 @@ app.controller('UsersController', function($scope, $location, usersService) {
             },
             function (serverError) {
                 //notifyService.showError("Unsuccessful Register!", serverError)
+                Noty.error('Unsuccessful login! <br/>' + serverError.error_description, 'bottomCenter');
                 console.log(serverError)
             });
     };

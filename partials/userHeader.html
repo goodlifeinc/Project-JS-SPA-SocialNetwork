@@ -1,13 +1,13 @@
-<div class="homeBtn">
-    <a class="btn btn-default" href="#/user/home">Home</a>
-</div>
 <div class="profilePic">
-    <img ng-src="{{profileImageData}}" alt="profile pic" />
+    <img class="img-circle" ng-src="{{profileImageData}}" alt="profile pic" />
 </div>
 <div class="name" ng-if="name">
     {{name}}
 </div>
-<div class="friendRequests" ng-init="loadFriendRequests()"><span class="btn btn-default">Friends</span>
+<div class="homeBtn">
+    <a class="btn btn-default glyphicon glyphicon-home" href="#/user/home"></a>
+</div>
+<div class="friendRequests" ng-init="loadFriendRequests()"><span class="btn btn-default glyphicon glyphicon-user"></span>
     <div ng-if="FriendRequestsData">
         <div ng-repeat="request in FriendRequestsData">
             From: {{request.user.name}}
@@ -16,6 +16,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-default" href="#/user/edit">Edit profile</a>
+<a class="btn btn-default glyphicon glyphicon-cog" href="#/user/edit"></a>
 <a class="btn btn-default" href="#/user/changepass">Change password</a>
 <button class="btn btn-default" ng-click="logout()">Logout</button>

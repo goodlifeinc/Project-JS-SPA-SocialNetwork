@@ -3,7 +3,7 @@
         <div class="singlePost" ng-repeat="post in newsFeedData" data-id="{{post.id}}">
             <header>
                 <div class="authorPic">
-                    <img ng-src="{{post.author.profileImage}}" alt="author.profileImg" />
+                    <img class="img-responsive img-circle" ng-src="{{post.author.profileImageData}}" alt="author.profileImg" />
                 </div>
                 <div>
                     <span>{{post.author.name}}</span>

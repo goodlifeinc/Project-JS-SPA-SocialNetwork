@@ -7,3 +7,8 @@ body {
 .wrapper header div {
     display: inline-block;
 }
+
+.profilePic img, .authorPic img {
+    height: 65px;
+    width: 65px;
+}

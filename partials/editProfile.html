@@ -1,4 +1,4 @@
-<header class="row">
+<header class="navbar navbar-default">
     <div user-header class="col-md-8 col-sm-12"></div>
     <div search-users class="col-md-4 col-sm-12"></div>
 </header>
@@ -8,14 +8,15 @@
     </header>
     <section class="col-md-12">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-12">
                 <div class="row">
                     <form class="form-horizontal">
                         <div class="col-md-3">
-                            <img ng-src="{{profileImage}}" alt="profileImage" />
+                            <img class="img-responsive img-thumbnail" id="profileImage" ng-if="editProfileImage" ng-src="{{editProfileImage}}" alt="profileImage" />
+                            <img class="img-responsive img-thumbnail" id="profileImage" ng-if="!editProfileImage" ng-src="{{profileImageData}}" />
                             <div>Allowed format .jpg</div>
                             <div>Limit: 128kb</div>
-                            <button class="btn btn-primary">Upload</button>
+                            <input type="file" name="profileImage" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" />
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
@@ -50,7 +51,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="pull-right">
-                                <button class="btn btn-default" ng-click="somefunc()">Save changes</button>
+                                <button class="btn btn-default" ng-click="editProfile(editData)">Save changes</button>
                             </div>
                         </div>
                     </form>

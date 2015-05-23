@@ -22,7 +22,7 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
     };
 
     service.EditUserProfile = function (editUserData, success, error) {
-        $http.put(serviceUrl + '/me', editUserData, {headers: usersService.GetHeaders()})
+        $http.put(serviceUrl, editUserData, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
