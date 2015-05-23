@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
         .when('/user/edit', {
             templateUrl: 'partials/editProfile.html',
             controller: 'ProfileController'
+        })
+        .when('/user/changepass', {
+            templateUrl: 'partials/changePassword.html',
+            controller: 'ProfileController'
         });
 
     $routeProvider.otherwise({ redirectTo: '/' });
