@@ -19,6 +19,10 @@ app.config(function($routeProvider) {
         .when('/user/home', {
             templateUrl: 'partials/userHomePage.html',
             controller: 'ProfileController'
+        })
+        .when('/user/edit', {
+            templateUrl: 'partials/editProfile.html',
+            controller: 'ProfileController'
         });
 
     $routeProvider.otherwise({ redirectTo: '/' });

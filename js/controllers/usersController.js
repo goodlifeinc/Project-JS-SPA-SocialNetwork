@@ -1,5 +1,8 @@
 app.controller('UsersController', function($scope, $location, usersService) {
-    if(usersService.isLoggedIn()) {
+
+    console.log('hello from users controlelr')
+    var isLocationPathHome = $location.path() == "/";
+    if(usersService.isLoggedIn() && isLocationPathHome) {
         $location.path('/user/home');
     }
 

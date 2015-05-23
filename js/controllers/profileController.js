@@ -12,7 +12,11 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
     var getUserData = function() {
         profileService.GetUserData(function(serverdata) {
                 $scope.name = serverdata.name;
+                $scope.email = serverdata.email;
+                $scope.gender = serverdata.gender;
                 localStorage['name'] = serverdata.name;
+                localStorage['email'] = serverdata.email;
+                localStorage['gender'] = serverdata.gender;
             },
             function(err){
                 usersService.ClearCredentials();
@@ -21,11 +25,13 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
             })
     };
 
-    if(!$scope.name){
-        if(!localStorage['name']) {
+    if(!$scope.name || !$scope.email || !$scope.gender){
+        if(!localStorage['name'] || !localStorage['email'] || !localStorage['gender']) {
             getUserData();
         }
         $scope.name = localStorage['name'];
+        $scope.email = localStorage['email'];
+        $scope.gender = localStorage['gender'];
     }
 
     $scope.logout = function () {
@@ -52,7 +58,6 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
     $scope.loadNewsFeed = function() {
         profileService.GetNewsFeed(0, 10,
         function(data) {
-            console.log(data);
             if (data.length) {
                 $scope.newsFeedData = data;
             }
@@ -111,7 +116,16 @@ app.controller('ProfileController', function($scope, $location, $route, profileS
             function(err){
                 console.log(err);
             })
+    };
+
+    $scope.getUserData = function() {
+
+    };
+
+    $scope.editProfile = function(profileData) {
+        console.log(profileData);
     }
 
+    $scope.editData = {gender: $scope.gender}
 
 });
