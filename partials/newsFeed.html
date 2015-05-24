@@ -18,7 +18,7 @@
                 </blockquote>
             </div>
             <footer class="text-right">
-                <span ng-if="post.likesCount > 0">
+                <span class="glyphicon glyphicon-thumbs-up">
                     {{post.likesCount}}
                 </span>
                 <span ng-if="post.liked">
@@ -28,8 +28,30 @@
                     <button class="btn btn-default">Like</button>
                 </span>
                 <span>
+                    Comments: {{post.totalCommentsCount}}
+                </span>
+                <span>
                     <button class="btn btn-default">Comment</button>
                 </span>
+                <div class="comments text-left" ng-if="post.totalCommentsCount > 0">
+                    <ul class="media-list" ng-repeat="comment in post.comments">
+                        <li class="media comment">
+                            <div class="media-left">
+                                <a href="#/user/{{comment.author.username}}">
+                                    <img class="media-object img-responsive img-circle" ng-src="{{comment.author.profileImageData}}" alt="comment author pic">
+
+                                    <span>{{comment.author.name}}</span>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <p>{{comment.commentContent}}</p>
+                            </div>
+                            <footer>
+                                <span class="pull-right">{{comment.date | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                            </footer>
+                        </li>
+                    </ul>
+                </div>
             </footer>
         </div>
     </div>

@@ -63,6 +63,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         function(data) {
             if (data.length) {
                 $scope.newsFeedData = data;
+                console.log(data)
             }
         },
         function(error) {

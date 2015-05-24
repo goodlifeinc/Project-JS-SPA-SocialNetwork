@@ -67,3 +67,13 @@ aside {
 
     margin-bottom: 5px;
 }
+
+.comments {
+    margin-top: 5px;
+}
+
+.comment {
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #adadad;
+}
