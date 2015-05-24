@@ -279,4 +279,19 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
                 console.log(error);
             })
     }
+
+    $scope.addPost = function(postData) {
+        if(postData) {
+            postData.username = $routeParams.id;
+        }
+        postsService.AddNewPost(postData,
+        function(data){
+            Noty.success('New post successfully added!', 'topCenter');
+            $route.reload();
+        },
+        function(error){
+            Noty.error('New post not added! Please enter post text.', 'bottomCenter');
+            console.log(error);
+        })
+    }
 });

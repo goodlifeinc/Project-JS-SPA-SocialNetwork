@@ -78,7 +78,29 @@
         <div ng-if="!userWallData">Nema postove, bace.</div>
     </section>
     <aside class="col-md-4" ng-if="wallOwnerData.isFriend">
-        <postComment></postComment>
+        <div class="row">
+            <div class="addCommentBox col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea class="form-control" rows="3" ng-model="addPostData.postContent" placeholder="Post text..."></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <img class="img-responsive" ng-src="{{profileImageData}}" />
+                        </div>
+                        <div class="col-md-8">
+                            as <strong>{{name}}</strong>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success" ng-click="addPost(addPostData)">Add post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="friendsContainer col-md-12" ng-init="loadFriendsFriendList()">
                 <h3>Friends <a href="">( {{friendsFriendListData.totalCount}} )</a></h3>

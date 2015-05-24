@@ -31,6 +31,10 @@ app.config(function($routeProvider) {
         .when('/user/:id', {
             templateUrl: 'partials/userWall.html',
             controller: 'ProfileController'
+        })
+        .when('/user/:username/friends', {
+            templateUrl: 'partials/friendsPage.html',
+            controller: 'ProfileController'
         });
 
     $routeProvider.otherwise({ redirectTo: '/' });

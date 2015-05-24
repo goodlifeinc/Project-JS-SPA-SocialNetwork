@@ -24,7 +24,7 @@
                 <span ng-if="post.liked">
                     <button class="btn btn-default" ng-click="unlikePost($event)">Unlike</button>
                 </span>
-                <span ng-if="!post.liked">
+                <span ng-if="!post.liked && (wallOwnerData.isFriend || post.author.isFriend)">
                     <button class="btn btn-default" ng-click="likePost($event)">Like</button>
                 </span>
                 <span>
