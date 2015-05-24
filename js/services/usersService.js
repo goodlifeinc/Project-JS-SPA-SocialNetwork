@@ -56,15 +56,15 @@ app.factory('usersService', function ($http, baseServiceUrl, requester) {
     service.GetFriendsDetailedFriendsList = function(username, success, error) {
         $http.get(serviceUrl + '/' + username + '/friends', {headers: this.GetHeaders()})
             .success(function (data, status, headers, config){
-                sucess(data)
+                success(data)
             })
             .error(error)
     };
 
     service.GetFreindsFriendsPreview = function(username, success, error) {
-        $http.get(serviceUrl + '/' + username + '/friends/priview', {headers: this.GetHeaders()})
+        $http.get(serviceUrl + '/' + username + '/friends/preview', {headers: this.GetHeaders()})
             .success(function (data, status, headers, config){
-                sucess(data)
+                success(data)
             })
             .error(error)
     };

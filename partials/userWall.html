@@ -11,7 +11,7 @@
             <div class="col-md-9">
                 <h1>{{wallOwnerData.name}}</h1>
                 <div ng-if="wallOwnerData.isFriend" class="btn btn-primary">Friend</div>
-                <div ng-if="!wallOwnerData.isFriend" class="btn btn-primary">Send friend request</div>
+                <div ng-if="!wallOwnerData.isFriend && !wallOwnerData.isWallOwner" class="btn btn-primary">Send friend request</div>
             </div>
         </div>
     </header>
@@ -53,13 +53,13 @@
 
         <div ng-if="!userWallData">Nema postove, bace.</div>
     </section>
-    <aside class="col-md-4">
+    <aside class="col-md-4" ng-if="wallOwnerData.isFriend">
         <postComment></postComment>
         <div class="row">
-            <div class="friendsContainer col-md-12" ng-init="loadOwnFriends()">
-                <h3>Friends</h3>
-                <div class="row" ng-if="ownFriendsData">
-                    <div class="singleFriend col-md-4" ng-repeat="friend in ownFriendsData">
+            <div class="friendsContainer col-md-12" ng-init="loadFriendsFriendList()">
+                <h3>Friends <a href="">( {{friendsFriendListData.totalCount}} )</a></h3>
+                <div class="row" ng-if="friendsFriendListData">
+                    <div class="singleFriend col-md-4" ng-repeat="friend in friendsFriendListData.friends">
                         <a href="#/user/{{friend.username}}">
                             <img ng-src="{{friend.profileImageData}}" alt="{{friend.username}} picture" class="img-responsive img-thumbnail" />
                             <div>{{friend.name}}</div>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div ng-if="!ownFriendsData">Nema nikoi, bace.</div>
+                <div ng-if="!friendsFriendListData">Nema nikoi, bace.</div>
             </div>
         </div>
     </aside>

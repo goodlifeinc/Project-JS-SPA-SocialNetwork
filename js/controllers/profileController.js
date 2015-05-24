@@ -205,8 +205,13 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
     $scope.loadWallOwnerData = function() {
         usersService.GetUserFullData($routeParams.id,
         function(data){
+            var isWallOwner = false;
+            if(data.username === $scope.username) {
+                isWallOwner = true;
+            }
             $scope.wallOwnerData = data;
-            console.log(data)
+            $scope.wallOwnerData.isWallOwner = isWallOwner;
+            console.log($scope.wallOwnerData)
         },
         function(err){
             $location.path('/user/home');
@@ -227,4 +232,18 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             console.log(error);
         })
     }
+
+    $scope.loadFriendsFriendList = function () {
+        usersService.GetFreindsFriendsPreview($routeParams.id,
+            function(data){
+                console.log(data)
+                $scope.friendsFriendListData = data;
+            },
+            function(error) {
+                usersService.ClearCredentials();
+                $location.path('/');
+                console.log(error);
+            }
+        )
+    };
 });
