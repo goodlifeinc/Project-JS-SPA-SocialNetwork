@@ -44,3 +44,19 @@ body {
 aside {
     border: 1px solid #adadad;
 }
+
+.friendRequestsDataOpen {
+    position: relative;
+}
+
+.friendRequests .visible {
+    display: block!important;
+    position: absolute;
+    width: 350px;
+    z-index: 9999;
+    background-color: #adadad;
+}
+
+.friendRequests .visible div {
+    width: 100%;
+}

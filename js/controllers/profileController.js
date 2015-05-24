@@ -1,4 +1,4 @@
-app.controller('ProfileController', function($scope, $location, $routeParams, profileService, usersService) {
+app.controller('ProfileController', function($scope, $location, $routeParams, $route, profileService, usersService) {
 
     $scope.username = usersService.GetUsername();
     $scope.isLogged = usersService.isLoggedIn();
@@ -93,6 +93,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             function(data) {
                 if (data.length) {
                     $scope.FriendRequestsData = data;
+                    console.log(data)
                 }
             },
             function(error) {
@@ -102,11 +103,22 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
             })
     };
 
+    $scope.sendFriendRequest = function() {
+        profileService.SendFriendRequest($routeParams.id,
+            function(data){
+                Noty.success('Friend request send!', 'topCenter');
+                $route.reload();
+            },
+            function(err){
+                console.log(err);
+            })
+    };
+
     $scope.acceptFriendRequest = function(id) {
         profileService.ApproveFriendRequest(id,
             function(data){
                 Noty.success('Friendship accepted!', 'topCenter');
-                console.log(data);
+                $route.reload();
             },
             function(err){
                 console.log(err);
@@ -117,7 +129,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, pr
         profileService.RejectFriendRequest(id,
             function(data){
                 Noty.success('Friendship rejected!', 'topCenter');
-                console.log(data);
+                $route.reload();
             },
             function(err){
                 console.log(err);

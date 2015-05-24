@@ -11,7 +11,8 @@
             <div class="col-md-9">
                 <h1>{{wallOwnerData.name}}</h1>
                 <div ng-if="wallOwnerData.isFriend" class="btn btn-primary">Friend</div>
-                <div ng-if="!wallOwnerData.isFriend && !wallOwnerData.isWallOwner" class="btn btn-primary">Send friend request</div>
+                <div ng-if="!wallOwnerData.isFriend && !wallOwnerData.isWallOwner && !wallOwnerData.hasPendingRequest" class="btn btn-primary" ng-click="sendFriendRequest()">Send friend request</div>
+                <div ng-if="wallOwnerData.hasPendingRequest" class="btn btn-primary">Friend request pending</div>
             </div>
         </div>
     </header>

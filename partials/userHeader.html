@@ -7,10 +7,26 @@
 <div class="homeBtn">
     <a class="btn btn-default glyphicon glyphicon-home" href="#/user/home"></a>
 </div>
-<div class="friendRequests" ng-init="loadFriendRequests()"><span class="btn btn-default glyphicon glyphicon-user"></span>
-    <div ng-if="FriendRequestsData">
+<script>
+    $('span.friendRequests').on('click', function() {
+        var isHidden = $('.friendRequestsData').hasClass('hidden');
+        if(isHidden) {
+            $('.friendRequestsData').removeClass('hidden').addClass('visible');
+            $('div.friendRequests').addClass('friendRequestsDataOpen');
+        }
+        else {
+            $('.friendRequestsData').removeClass('visible').addClass('hidden');
+            $('span.friendRequests').addClass('friendRequestsDataOpen');
+        }
+    })
+</script>
+<div class="friendRequests" ng-init="loadFriendRequests()"><span class="friendRequests btn btn-default glyphicon glyphicon-user"><span>{{FriendRequestsData.length}}</span></span>
+    <div ng-if="FriendRequestsData" class="friendRequestsData hidden">
         <div ng-repeat="request in FriendRequestsData">
-            From: {{request.user.name}}
+            <div class="col-md-2">
+                <img ng-src="{{request.user.profileImageData}}" class="img-responsive">
+            </div>
+            <a href="#/user/{{request.user.username}}">{{request.user.name}}</a>
             <button ng-click="acceptFriendRequest(request.id)">Accept</button>
             <button ng-click="rejectFriendRequest(request.id)">Reject</button>
         </div>

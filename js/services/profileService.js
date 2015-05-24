@@ -82,10 +82,11 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
 
     };
 
-    service.SendFriendRequest = function(username, sucess, error) {
-        $http.post(serviceUrl + '/requests/' + username, {headers: usersService.GetHeaders()})
+    service.SendFriendRequest = function(username, success, error) {
+        $http.post(serviceUrl + '/requests/' + username, {}, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config){
-                sucess(data)
+                console.log(data);
+                success(data)
             })
             .error(error)
 
