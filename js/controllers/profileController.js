@@ -1,4 +1,4 @@
-app.controller('ProfileController', function($scope, $location, $routeParams, $route, profileService, usersService) {
+app.controller('ProfileController', function($scope, $location, $routeParams, $route, profileService, usersService, postsService) {
 
     $scope.username = usersService.GetUsername();
     $scope.isLogged = usersService.isLoggedIn();
@@ -255,4 +255,28 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             }
         )
     };
+
+    $scope.likePost = function($event) {
+        var postId = $($event.target).parent().parent().parent().data('id');
+        postsService.LikePost(postId,
+        function(data){
+            Noty.success('Post successfully liked!', 'topCenter');
+            $route.reload();
+        },
+        function(error){
+            console.log(error);
+        })
+    }
+
+    $scope.unlikePost = function($event) {
+        var postId = $($event.target).parent().parent().parent().data('id');
+        postsService.UnlikePost(postId,
+            function(data){
+                Noty.success('Post successfully unliked!', 'topCenter');
+                $route.reload();
+            },
+            function(error){
+                console.log(error);
+            })
+    }
 });

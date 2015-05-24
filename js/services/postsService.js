@@ -48,7 +48,7 @@ app.factory('postsService', function ($http, baseServiceUrl, usersService) {
     };
 
     service.LikePost = function (id, success, error) {
-        $http.post(serviceUrl + '/' + id + '/likes', {headers: usersService.GetHeaders()})
+        $http.post(serviceUrl + '/' + id + '/likes', {}, {headers: usersService.GetHeaders()})
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);

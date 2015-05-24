@@ -40,10 +40,10 @@
                         {{post.likesCount}}
                     </span>
                     <span ng-if="post.liked">
-                        <button class="btn btn-default">Unlike</button>
+                        <button class="btn btn-default" ng-click="unlikePost($event)">Unlike</button>
                     </span>
-                    <span ng-if="!post.liked">
-                        <button class="btn btn-default">Like</button>
+                    <span ng-if="!post.liked && (wallOwnerData.isFriend || post.author.isFriend)">
+                        <button class="btn btn-default" ng-click="likePost($event)">Like</button>
                     </span>
                     <span>
                         Comments: {{post.totalCommentsCount}}
@@ -52,6 +52,7 @@
                         <button class="btn btn-default">Comment</button>
                     </span>
                     <div class="comments text-left" ng-if="post.totalCommentsCount > 0">
+                        <h3>Comments</h3>
                         <ul class="media-list" ng-repeat="comment in post.comments">
                             <li class="media comment">
                                 <div class="media-left">

@@ -22,10 +22,10 @@
                     {{post.likesCount}}
                 </span>
                 <span ng-if="post.liked">
-                    <button class="btn btn-default">Unlike</button>
+                    <button class="btn btn-default" ng-click="unlikePost($event)">Unlike</button>
                 </span>
                 <span ng-if="!post.liked">
-                    <button class="btn btn-default">Like</button>
+                    <button class="btn btn-default" ng-click="likePost($event)">Like</button>
                 </span>
                 <span>
                     Comments: {{post.totalCommentsCount}}
