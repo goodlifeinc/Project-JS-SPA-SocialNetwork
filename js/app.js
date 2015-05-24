@@ -32,7 +32,7 @@ app.config(function($routeProvider) {
             templateUrl: 'partials/userWall.html',
             controller: 'ProfileController'
         })
-        .when('/user/:username/friends', {
+        .when('/user/:id/friends', {
             templateUrl: 'partials/friendsPage.html',
             controller: 'ProfileController'
         });

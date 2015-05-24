@@ -203,13 +203,13 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         var reader = new FileReader();
         reader.onload = $scope.imageIsLoaded;
         reader.readAsDataURL(element.files[0]);
-    }
+    };
 
     $scope.imageIsLoaded = function(e){
         $scope.$apply(function() {
             $scope.editProfileImage = e.target.result;
         });
-    }
+    };
 
     $scope.loadWallOwnerData = function() {
         usersService.GetUserFullData($routeParams.id,
@@ -226,7 +226,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             $location.path('/user/home');
             console.log(err);
         })
-    }
+    };
 
     $scope.loadUserWallData = function() {
         usersService.GetFriendsWallByPages($routeParams.id, 0, 10,
@@ -240,7 +240,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             $location.path('/user/home');
             console.log(error);
         })
-    }
+    };
 
     $scope.loadFriendsFriendList = function () {
         usersService.GetFreindsFriendsPreview($routeParams.id,
@@ -266,7 +266,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         function(error){
             console.log(error);
         })
-    }
+    };
 
     $scope.unlikePost = function($event) {
         var postId = $($event.target).parent().parent().parent().data('id');
@@ -278,7 +278,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             function(error){
                 console.log(error);
             })
-    }
+    };
 
     $scope.addPost = function(postData) {
         if(postData) {
@@ -293,5 +293,46 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             Noty.error('New post not added! Please enter post text.', 'bottomCenter');
             console.log(error);
         })
-    }
+    };
+
+    $scope.loadOwnFriends = function () {
+        var userId = $routeParams.id;
+
+        $scope.userWatch = {};
+
+        usersService.GetUserPreviewData(userId,
+            function(data){
+                $scope.userWatch.personal = data;
+            },
+            function(error){
+                console.log(error);
+            });
+
+        if(userId != $scope.username) {
+            usersService.GetFriendsDetailedFriendsList(userId,
+                function(data){
+                    $scope.userWatch.friends = data;
+                    $scope.userWatch.friends.totalFriendsCount = data.length;
+                    console.log($scope.userWatch);
+                },
+                function(error) {
+                    $location.path('/');
+                    console.log(error);
+                }
+            )
+        }
+        else {
+            profileService.GetOwnFriends(
+                function(data){
+                    $scope.userWatch.friends = data;
+                    $scope.userWatch.friends.totalFriendsCount = data.length;
+                    console.log($scope.userWatch);
+                },
+                function(error) {
+                    $location.path('/');
+                    console.log(error);
+                }
+            )
+        }
+    };
 });

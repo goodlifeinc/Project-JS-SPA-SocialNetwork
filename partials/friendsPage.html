@@ -1,0 +1,19 @@
+<header class="navbar navbar-default">
+    <div user-header class="col-md-8 col-sm-12"></div>
+    <div search-users class="col-md-4 col-sm-12"></div>
+</header>
+<main class="container" ng-init="loadOwnFriends()">
+    <header class="col-md-12 col-sm-12">
+        <h1>{{userWatch.personal.name}} - Friends ({{userWatch.friends.totalFriendsCount}} Total)</h1>
+    </header>
+    <section class="col-md-12">
+        <div class="col-md-6" ng-repeat="friend in userWatch.friends">
+            <div class="col-md-4">
+                <img class="img-responsive img-thumbnail" ng-src="{{friend.profileImageData}}" alt="friend profile pic"/>
+            </div>
+            <div class="col-md-8">
+                <strong>{{friend.name}}</strong>
+            </div>
+        </div>
+    </section>
+</main>
