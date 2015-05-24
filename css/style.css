@@ -57,6 +57,13 @@ aside {
     background-color: #adadad;
 }
 
-.friendRequests .visible div {
+.friendRequests .visible > div {
     width: 100%;
+}
+
+.friendRequest {
+    padding: 5px;
+    border-bottom: 1px solid white;
+
+    margin-bottom: 5px;
 }

@@ -22,8 +22,8 @@
 </script>
 <div class="friendRequests" ng-init="loadFriendRequests()"><span class="friendRequests btn btn-default glyphicon glyphicon-user"><span>{{FriendRequestsData.length}}</span></span>
     <div ng-if="FriendRequestsData" class="friendRequestsData hidden">
-        <div ng-repeat="request in FriendRequestsData">
-            <div class="col-md-2">
+        <div ng-repeat="request in FriendRequestsData" class="friendRequest">
+            <div class="col-md-4">
                 <img ng-src="{{request.user.profileImageData}}" class="img-responsive">
             </div>
             <a href="#/user/{{request.user.username}}">{{request.user.name}}</a>
