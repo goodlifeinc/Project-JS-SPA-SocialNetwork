@@ -63,7 +63,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         function(data) {
             if (data.length) {
                 $scope.newsFeedData = data;
-                console.log(data)
             }
         },
         function(error) {
@@ -160,7 +159,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         }
         localStorage['gender'] = editData.gender;
 
-        console.log(editData)
         profileService.EditUserProfile(editData,
         function(data) {
             if($scope.editProfileImage) {
@@ -220,7 +218,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             }
             $scope.wallOwnerData = data;
             $scope.wallOwnerData.isWallOwner = isWallOwner;
-            console.log($scope.wallOwnerData)
         },
         function(err){
             $location.path('/user/home');
@@ -234,7 +231,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             if(data.length) {
                 $scope.userWallData = data;
             }
-            console.log(data);
         },
         function (error) {
             $location.path('/user/home');
@@ -245,7 +241,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
     $scope.loadFriendsFriendList = function () {
         usersService.GetFreindsFriendsPreview($routeParams.id,
             function(data){
-                console.log(data)
                 $scope.friendsFriendListData = data;
             },
             function(error) {
@@ -313,7 +308,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
                 function(data){
                     $scope.userWatch.friends = data;
                     $scope.userWatch.friends.totalFriendsCount = data.length;
-                    console.log($scope.userWatch);
                 },
                 function(error) {
                     $location.path('/');
@@ -322,11 +316,10 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             )
         }
         else {
-            profileService.GetOwnFriends(123
+            profileService.GetOwnFriends(
                 function(data){
                     $scope.userWatch.friends = data;
                     $scope.userWatch.friends.totalFriendsCount = data.length;
-                    console.log($scope.userWatch);
                 },
                 function(error) {
                     $location.path('/');
