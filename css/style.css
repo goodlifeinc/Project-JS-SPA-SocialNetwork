@@ -40,3 +40,7 @@ body {
 .userWall > header img {
     max-height: 150px;
 }
+
+aside {
+    border: 1px solid #adadad;
+}
