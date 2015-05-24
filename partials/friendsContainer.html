@@ -1,7 +1,7 @@
-<div class="friendsContainer col-md-12" ng-init="loadOwnFriends()">
-    <h3>Friends</h3>
+<div class="friendsContainer col-md-12" ng-init="loadOwnFriendsPreview()">
+    <h3>Friends <a href="">( {{ownFriendsData.totalCount}} )</a></h3>
     <div class="row" ng-if="ownFriendsData">
-        <div class="singleFriend col-md-4" ng-repeat="friend in ownFriendsData">
+        <div class="singleFriend col-md-4" ng-repeat="friend in ownFriendsData.friends">
             <a href="#/user/{{friend.username}}">
                 <img ng-src="{{friend.profileImageData}}" alt="{{friend.username}} picture" class="img-responsive img-thumbnail" />
                 <div>{{friend.name}}</div>

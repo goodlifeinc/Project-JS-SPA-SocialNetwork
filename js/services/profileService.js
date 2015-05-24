@@ -43,6 +43,14 @@ app.factory('profileService', function ($http, baseServiceUrl, requester, usersS
             .error(error)
     };
 
+    service.GetOwnFriendsPreview = function(success, error) {
+        $http.get(serviceUrl + '/friends/preview', {headers: usersService.GetHeaders()})
+            .success(function (data, status, headers, config){
+                success(data)
+            })
+            .error(error)
+    };
+
     service.GetNewsFeed = function(page, numPerPage, sucess, error) {
         var startPos = (page * numPerPage) - numPerPage,
             query = '/feed?StartPostId=' + '&PageSize=' + numPerPage;

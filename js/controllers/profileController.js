@@ -72,13 +72,10 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
         })
     };
 
-    $scope.loadOwnFriends = function () {
-        profileService.GetOwnFriends(
+    $scope.loadOwnFriendsPreview = function () {
+        profileService.GetOwnFriendsPreview(
             function(data){
-                if (data.length) {
-                    console.log(data);
-                    $scope.ownFriendsData = data;
-                }
+                $scope.ownFriendsData = data;
             },
             function(error) {
                 usersService.ClearCredentials();
@@ -93,7 +90,6 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             function(data) {
                 if (data.length) {
                     $scope.FriendRequestsData = data;
-                    console.log(data)
                 }
             },
             function(error) {
