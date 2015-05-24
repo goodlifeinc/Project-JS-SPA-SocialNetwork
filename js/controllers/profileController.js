@@ -322,7 +322,7 @@ app.controller('ProfileController', function($scope, $location, $routeParams, $r
             )
         }
         else {
-            profileService.GetOwnFriends(
+            profileService.GetOwnFriends(123
                 function(data){
                     $scope.userWatch.friends = data;
                     $scope.userWatch.friends.totalFriendsCount = data.length;
